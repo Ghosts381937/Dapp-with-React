@@ -33,8 +33,6 @@ function App() {
       const _contract = new _web3.eth.Contract(CONTACT_ABI, CONTACT_ADDRESS);
       const _totalSupply = await _contract.methods.totalSupply().call();
       const _balance = await _contract.methods.balanceOf(_account[0]).call();
-      window.ethereum.on('chainChanged',(_chainId) => setChainId(_chainId));
-      window.ethereum.on('accountsChanged', (_account) => setAccount(_account[0]));
       setWeb3(_web3);
       setAccount(_account[0]);
       setChainId(_chainId);

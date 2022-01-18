@@ -9,18 +9,25 @@ function App() {
   const [totalSupply, setTotalSupply] = useState();
   const [chainId, setChainId] = useState();
   const [GHOBalance, setGHOBalance] = useState();
+
+  //connect to metamask wallet and get current selected account.
   const connectWallet = () => {
     window.ethereum.request({ method: 'eth_requestAccounts' })
     .then((_account) => {setAccount(_account[0]);console.log(_account);});
   }
+
+  //using the contract to transfer the currency with the metamask. 
   const handleTranfer = () => {
     contract.methods.transfer({_to}, web3.utils.toWei('1', 'ether'))
     .send({from: account});
   }
+
+  //using the contract to approve the currency with the metamask. 
   const handleApprove = () => {
     contract.methods.approve(account, web3.utils.toWei('1', 'ether'))
     .send({from: account});
   }
+  
   useEffect(() => {
     async function init() {
       await window.ethereum.request({

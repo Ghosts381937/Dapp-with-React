@@ -1,3 +1,58 @@
+# Getting Started with your first dapp
+
+## Requirement
+1. react
+2. web3.js
+3. metamask
+
+## Implementation
+
+1. connect to the wallet
+  ```js
+  //connect to metamask wallet and get current selected account.
+  const connectWallet = () => {
+    window.ethereum.request({ method: 'eth_requestAccounts' })
+    .then((_account) => {setAccount(_account[0]);console.log(_account);});
+  }
+  ```
+2. get the current selected account
+  ```js
+  account = web3.eth.getAccounts();
+  console.log(account[0]);
+  ```
+3. switch the chain network to BSC Testnet
+  ```js
+  window.ethereum.request({
+    method: 'wallet_switchEthereumChain',
+    params: [{ chainId: '0x61' }],//BSC Testnet chainId
+  });
+  ```
+4. create an instance of a contract 
+  ```js
+  const contract = new web3.eth.Contract(CONTACT_ABI, CONTACT_ADDRESS);
+  ```
+5. get the totalSupply of a BEP20 contract
+  ```js
+  const totalSupply = await contract.methods.totalSupply().call();
+  ```
+6. transfer the currency to another account using the method from BEP20 contract
+  ```js
+  //please replace the {toAddrees} and {fromaddres} to which you need
+  const handleTransfer = () => {
+    contract.methods.transfer({toAddress}, web3.utils.toWei('1', 'ether'))
+    .send({from: {fromAddress}});
+  }
+  ```
+  
+
+    
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

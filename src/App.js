@@ -17,7 +17,7 @@ function App() {
   }
 
   //using the contract to transfer the currency with the metamask. 
-  const handleTranfer = () => {
+  const handleTransfer = () => {
     contract.methods.transfer({_to}, web3.utils.toWei('1', 'ether'))
     .send({from: account});
   }
@@ -61,7 +61,7 @@ function App() {
         <br />
         <button onClick={connectWallet}>Connect Wallet</button>
         <br />
-        <button onClick={handleTranfer}>Transfer</button>
+        <button onClick={handleTransfer}>Transfer</button>
         <br />
         <button onClick={handleApprove}>Approve</button>
       </div>
